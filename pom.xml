@@ -31,20 +31,60 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
-                <artifactId>download-maven-plugin</artifactId>
-                <version>1.2.1</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
                 <executions>
                     <execution>
-                        <id>install-schema</id>
+                        <id>download-files</id>
                         <phase>initialize</phase>
                         <goals>
-                            <goal>wget</goal>
+                            <goal>run</goal>
                         </goals>
                         <configuration>
-                            <url>https://api.sportsdatallc.org//ncaafb-${sportsdata.access.level}${sportsdata.version}/schema/hierarchy-v1.0.xsd?api_key=${sportsdata.api.key}</url>
-                            <outputDirectory>${basedir}/target/schema</outputDirectory>
-                            <outputFileName>schema.xsd</outputFileName>
+                            <target>
+                                <mkdir dir="${basedir}/target/schema/"/>
+                                <get src="https://api.sportsdatallc.org/ncaafb-${sportsdata.access.level}${sportsdata.version}/schema/schedule-v1.0.xsd?api_key=${sportsdata.api.key}" dest="${basedir}/target/schema/ncaafb-schedule.xsd" verbose="true" usetimestamp="false">
+                                </get>
+                                <sleep seconds="2"/>
+                                
+                                <get src="https://api.sportsdatallc.org/ncaafb-${sportsdata.access.level}${sportsdata.version}/schema/summary-v1.0.xsd?api_key=${sportsdata.api.key}" dest="${basedir}/target/schema/ncaafb-summary.xsd" verbose="true" usetimestamp="false">
+                                    
+                                </get>
+                                <sleep seconds="2"/>
+                                
+                                <get src="https://api.sportsdatallc.org/ncaafb-${sportsdata.access.level}${sportsdata.version}/schema/pbp-v1.0.xsd?api_key=${sportsdata.api.key}" dest="${basedir}/target/schema/ncaafb-pbp.xsd" verbose="true" usetimestamp="false">
+                                    
+                                </get>
+                                <sleep seconds="2"/>
+                                <get src="https://api.sportsdatallc.org/ncaafb-${sportsdata.access.level}${sportsdata.version}/schema/extended-play-v1.0.xsd?api_key=${sportsdata.api.key}" dest="${basedir}/target/schema/ncaafb-extended-play.xsd" verbose="true" usetimestamp="false">
+                                    
+                                </get>
+                                <sleep seconds="2"/>
+                                <get src="https://api.sportsdatallc.org/ncaafb-${sportsdata.access.level}${sportsdata.version}/schema/boxscore-v1.0.xsd?api_key=${sportsdata.api.key}" dest="${basedir}/target/schema/ncaafb-boxscore.xsd" verbose="true" usetimestamp="false">
+                                    
+                                </get>
+                                <sleep seconds="2"/>
+                                <get src="https://api.sportsdatallc.org/ncaafb-${sportsdata.access.level}${sportsdata.version}/schema/extended-boxscore-v1.0.xsd?api_key=${sportsdata.api.key}" dest="${basedir}/target/schema/ncaafb-extended-boxscore.xsd" verbose="true" usetimestamp="false">
+                                    
+                                </get>
+                                <sleep seconds="2"/>
+                                <get src="https://api.sportsdatallc.org/ncaafb-${sportsdata.access.level}${sportsdata.version}/schema/roster-v1.0.xsd?api_key=${sportsdata.api.key}" dest="${basedir}/target/schema/ncaafb-roster.xsd" verbose="true" usetimestamp="false">
+                                    
+                                </get>
+                                <sleep seconds="2"/>
+                                <get src="https://api.sportsdatallc.org/ncaafb-${sportsdata.access.level}${sportsdata.version}/schema/hierarchy-v1.0.xsd?api_key=${sportsdata.api.key}" dest="${basedir}/target/schema/ncaafb-hierarchy.xsd" verbose="true" usetimestamp="false">
+                                    
+                                </get>
+                                <sleep seconds="2"/>
+                            <get src="https://api.sportsdatallc.org/ncaafb-${sportsdata.access.level}${sportsdata.version}/schema/standings-v1.0.xsd?api_key=${sportsdata.api.key}" dest="${basedir}/target/schema/ncaafb-standings.xsd" verbose="true" usetimestamp="false">
+                                    
+                                </get>
+                                <sleep seconds="2"/>
+                                <get src="https://api.sportsdatallc.org/ncaafb-${sportsdata.access.level}${sportsdata.version}/schema/statistics-v1.0.xsd?api_key=${sportsdata.api.key}" dest="${basedir}/target/schema/ncaafb-statstics.xsd" verbose="true" usetimestamp="false">
+                                    
+                                </get>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
